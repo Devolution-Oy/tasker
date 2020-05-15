@@ -1,0 +1,26 @@
+{
+  "action": "closed",
+  "issue": {
+    "number": 1,
+    "user": {
+      "login": "tester"
+    },
+    "labels": [
+      {
+        "id": 208045946,
+        "node_id": "MDU6TGFiZWwyMDgwNDU5NDY=",
+        "url": "https://api.github.com/repos/octocat/Hello-World/labels/bug",
+        "name": "rejected",
+        "description": "Something isn't working",
+        "color": "f29513",
+        "default": true
+      }
+    ]
+  },
+  "repository": {
+    "name": "testing-things",
+    "owner": {
+      "login": "tester"
+    }
+  }
+}
