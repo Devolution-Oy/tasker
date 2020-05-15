@@ -6,8 +6,6 @@
 const axios = require('axios');
 
 module.exports = app => {
-  // Your code here
-
   const sendPayment = (amount, githubUser, issue, project) => {
     app.log('Sending paymet');
     return axios.post(process.env.ROSTER_URL + '/postRecord', {
@@ -58,10 +56,4 @@ module.exports = app => {
         return context.github.issues.createComment(issueComment);
       });
   });
-
-  // For more information on building apps:
-  // https://probot.github.io/docs/
-
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
 };
