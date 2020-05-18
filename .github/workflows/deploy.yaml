@@ -19,6 +19,8 @@ jobs:
         npm ci
         npm run test
       env:
+        ROSTER_URL: ${{ secrets.ROSTER_URL }}
+        APP_ID: ${{ secrets.APP_ID }}
         CI: true
     - name: Publish to Github Packages Registry
       uses: elgohr/Publish-Docker-Github-Action@master
