@@ -1,0 +1,41 @@
+name: build
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 13.10
+      uses: actions/setup-node@v1
+      with:
+        node-version: '13.10'
+    - name: npm install and run unittest
+      run: |
+        npm ci
+        npm run test
+      env:
+        CI: true
+    - name: Publish to Github Packages Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: devolutionfinland/tasker
+        username: Devolution-Oy
+        password: ${{ secrets.GITHUB_TOKEN }}
+        dockerfile: Dockerfile
+        tags: latest
+    - name: Deploy package to digitalocean
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.TASKER_HOST }}
+        username: ${{ secrets.DROPLET_USER }}
+        password: ${{ secrets.DROPLET_PW }}
+        port: ${{ secrets.PORT }}
+        script: |
+          docker stop $(docker ps -a -q)
+          docker pull devolutionfinalnd/tasker:latest
+          docker run --rm -d -p 80:80 devolutionfinland/tasker:latest
