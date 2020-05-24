@@ -1,16 +1,17 @@
 FROM node:13.10
 
-ENV NODE_ENV=${NODE_ENV}
+USER node
+ENV NODE_ENV=production
 ENV APP_ID=${APP_ID}
 ENV WEBHOOK_SECRET=${WEBHOOK_SECRET}
 ENV ROSTER_URL=${ROSTER_URL}
 ENV CI=${CI}
-RUN echo whoami 
+RUN whoami 
 RUN echo $ROSTER_URL
 RUN mkdir /home/node/app
-COPY package.json /home/node/app/
-COPY package-lock.json /home/node/app/
-COPY index.js /home/node/app
+COPY --chown node:node package.json /home/node/app/
+COPY --chown node:node package-lock.json /home/node/app/
+COPY --chown node:node index.js /home/node/app
 WORKDIR /home/node/app
 ENV PATH /home/node/app/node_modules/.bin:$PATH
 RUN npm install
