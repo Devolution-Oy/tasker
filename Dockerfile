@@ -11,6 +11,9 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 COPY package.json /usr/src/app/package.json
 COPY package-lock.json /usr/src/app/package-lock.json
 RUN npm install
+RUN echo $PWD
+RUN ls -la
+RUN ls -la $GITHUB_WORKSPACE
 COPY $GITHUB_WORKSPACE /usr/src/app
 
 EXPOSE 80
