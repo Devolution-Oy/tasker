@@ -11,5 +11,5 @@ WORKDIR /home/node/app
 ENV PATH /home/node/app/node_modules/.bin:$PATH
 RUN npm install
 
-EXPOSE 3000
+EXPOSE 8080
 ENTRYPOINT ["npm", "start"]
