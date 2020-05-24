@@ -30,13 +30,14 @@ jobs:
         APP_ID: ${{ secrets.APP_ID }}
         WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
         CI: true
+        NODE_ENV: production
       with:
         name: devolutionfinland/tasker
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PW }}
         dockerfile: Dockerfile
         tags: latest
-        buildargs: ROSTER_URL,APP_ID,WEBHOOK_SECRET,CI
+        buildargs: ROSTER_URL,APP_ID,WEBHOOK_SECRET,CI,NODE_ENV
     - name: Deploy package to digitalocean
       uses: appleboy/ssh-action@master
       with:
@@ -47,4 +48,4 @@ jobs:
         script: |
           docker stop $(docker ps -a -q)
           docker pull devolutionfinland/tasker:latest
-          docker run --rm -d -p 80:80 devolutionfinland/tasker:latest
+          docker run --rm -d -v $PWD:/usr/src/app -p 80:80 devolutionfinland/tasker:latest
