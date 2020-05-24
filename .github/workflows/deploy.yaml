@@ -37,7 +37,7 @@ jobs:
         password: ${{ secrets.DOCKER_PW }}
         dockerfile: Dockerfile
         tags: latest
-        buildargs: ROSTER_URL,APP_ID,WEBHOOK_SECRET,CI,NODE_ENV
+        buildargs: ROSTER_URL,APP_ID,WEBHOOK_SECRET
     - name: Deploy package to digitalocean
       uses: appleboy/ssh-action@master
       with:
@@ -48,4 +48,4 @@ jobs:
         script: |
           docker stop $(docker ps -a -q)
           docker pull devolutionfinland/tasker:latest
-          docker run --rm -d -v $PWD:/home/node/app -p 80:80 devolutionfinland/tasker:latest
+          docker run --rm -d -v $PWD/key.pem:/home/node/app/key.pem -p 80:80 devolutionfinland/tasker:latest
