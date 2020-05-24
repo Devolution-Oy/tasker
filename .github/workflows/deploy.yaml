@@ -35,7 +35,7 @@ jobs:
         password: ${{ secrets.DOCKER_PW }}
         dockerfile: Dockerfile
         tags: latest
-        buildargs: ROSTER_URL,APP_ID,WEBHOOK_SECRET
+        buildargs: BA_ROSTER_URL,BA_APP_ID,BA_WEBHOOK_SECRET
     - name: Deploy package to digitalocean
       uses: appleboy/ssh-action@master
       with:
