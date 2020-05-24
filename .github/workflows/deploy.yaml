@@ -48,4 +48,4 @@ jobs:
         script: |
           docker stop $(docker ps -a -q)
           docker pull devolutionfinland/tasker:latest
-          docker run --rm -d -v $PWD:/usr/src/app -p 80:80 devolutionfinland/tasker:latest
+          docker run --rm -d -v $PWD:/home/node/app -p 80:80 devolutionfinland/tasker:latest
