@@ -35,7 +35,6 @@ jobs:
         password: ${{ secrets.DOCKER_PW }}
         dockerfile: Dockerfile
         tags: latest
-        buildargs: BA_ROSTER_URL,BA_APP_ID,BA_WEBHOOK_SECRET
     - name: Deploy package to digitalocean
       uses: appleboy/ssh-action@master
       with:
@@ -44,6 +43,7 @@ jobs:
         password: ${{ secrets.DROPLET_PW }}
         port: ${{ secrets.PORT }}
         script: |
+          whamai
           docker stop $(docker ps -a -q)
           docker pull devolutionfinland/tasker:latest
-          docker run --rm -d -v $PWD/key.pem:/home/node/app/key.pem -p 80:80 devolutionfinland/tasker:latest
+          docker run --rm -d -e WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }} -e APP_ID=${{ secrets.APP_ID }} -e ROSTER_URL=${{ secrets.ROSTER_URL }} -v $PWD/key.pem:/home/node/app/key.pem -p 80:80 devolutionfinland/tasker:latest

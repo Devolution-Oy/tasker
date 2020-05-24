@@ -3,10 +3,6 @@ FROM node:13.10
 USER node
 # Replace the args with buildarg
 ENV NODE_ENV production
-ENV APP_ID $BA_APP_ID
-ENV WEBHOOK_SECRET $BA_WEBHOOK_SECRET
-ENV ROSTER_URL $BA_ROSTER_URL
-RUN echo $ROSTER_URL
 RUN mkdir /home/node/app
 COPY --chown=node:node package.json /home/node/app/
 COPY --chown=node:node package-lock.json /home/node/app/
