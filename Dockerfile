@@ -6,9 +6,9 @@ ARG BA_APP_ID=123456
 ARG BA_WEBHOOK_SECRET=123456
 ARG BA_ROSTER_URL=localhost
 ENV NODE_ENV=production
-ENV APP_ID=${BA_APP_ID}
-ENV WEBHOOK_SECRET=${BA_WEBHOOK_SECRET}
-ENV ROSTER_URL=${BA_ROSTER_URL}
+ENV APP_ID=$BA_APP_ID
+ENV WEBHOOK_SECRET=$BA_WEBHOOK_SECRET
+ENV ROSTER_URL=$BA_ROSTER_URL
 RUN echo $ROSTER_URL
 RUN mkdir /home/node/app
 COPY --chown=node:node package.json /home/node/app/
@@ -17,8 +17,6 @@ COPY --chown=node:node index.js /home/node/app
 WORKDIR /home/node/app
 ENV PATH /home/node/app/node_modules/.bin:$PATH
 RUN npm install
-RUN echo $PWD
-RUN ls -la
 
 EXPOSE 80
 ENTRYPOINT ["npm", "start"]
