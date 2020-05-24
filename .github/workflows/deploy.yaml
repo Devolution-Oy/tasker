@@ -43,8 +43,6 @@ jobs:
         password: ${{ secrets.DROPLET_PW }}
         port: ${{ secrets.PORT }}
         script: |
-          whoami
-          ls -la
-          docker stop $(docker ps -a -q)
-          docker pull devolutionfinland/tasker:latest
-          docker run --rm -d -e WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }} -e APP_ID=${{ secrets.APP_ID }} -e ROSTER_URL=${{ secrets.ROSTER_URL }} -v $PWD/key.pem:/home/node/app/key.pem -p 80:80 devolutionfinland/tasker:latest
+          /snap/bin/docker stop $(docker ps -a -q)
+          /snap/bin/docker pull devolutionfinland/tasker:latest
+          /snap/bin/docker run --rm -d -e WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }} -e APP_ID=${{ secrets.APP_ID }} -e ROSTER_URL=${{ secrets.ROSTER_URL }} -v $PWD/key.pem:/home/node/app/key.pem -p 80:80 devolutionfinland/tasker:latest
