@@ -7,7 +7,7 @@ const axios = require('axios');
 
 module.exports = app => {
   const sendPayment = (amount, githubUser, issue, project) => {
-    app.log('Sending paymet');
+    app.log('Sending paymet ' + process.env.ROSTER_URL);
     return axios.post(process.env.ROSTER_URL + '/postRecord', {
       amount: amount,
       githubUser: githubUser,
