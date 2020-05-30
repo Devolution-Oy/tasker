@@ -6,7 +6,7 @@ ENV NODE_ENV production
 RUN mkdir /home/node/app
 COPY --chown=node:node package.json /home/node/app/
 COPY --chown=node:node package-lock.json /home/node/app/
-COPY --chown=node:node index.js /home/node/app
+COPY --chown=node:node *.js /home/node/app
 WORKDIR /home/node/app
 ENV PATH /home/node/app/node_modules/.bin:$PATH
 RUN npm install
