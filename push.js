@@ -10,4 +10,5 @@ module.exports = async context => {
 
   const diff = await getDiff(context);
   context.log(diff);
+  // TODO: Create issues from todo flags
 };
