@@ -1,6 +1,7 @@
 const findTODO = async changeContent => {
   const regex = new RegExp('.*TODO\\b\\s?:?(?<title>.*)', 'i');
   const match = regex.exec(changeContent);
+  if (!match) return;
   return new Promise(resolve => {
     resolve(match.title.trim());
   });
@@ -10,7 +11,7 @@ const isDuplicate = async (title, context) => {
   const search = await context.github.search.issuesAndPullRequests({
     q: `${title} in:title repo:${context.payload.repository.full_name}`,
     per_page: 100
-  });
+  }); 
 
   if (search.data.total_count !== 0) {
     return true;
