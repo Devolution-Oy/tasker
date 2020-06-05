@@ -32,9 +32,9 @@ const processChange = async (change, context) => {
 
   const regex = new RegExp('.*TODO\\b\\s?:?(?<title>.*)', 'i');
   const match = regex.exec(change.content);
-  if (!match || !match.title) return;
+  if (!match || !match.groups.title) return;
 
-  var title = match.title.trim();
+  var title = match.groups.title.trim();
 
   return createIssue(title, context);
 };
