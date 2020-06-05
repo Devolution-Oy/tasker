@@ -1,4 +1,6 @@
 const getDiff = require('./diff');
+const parseDiff = require('parse-diff');
+const processFile = require('./processFile');
 
 module.exports = async context => {
   context.log('Push event received!');
@@ -10,5 +12,9 @@ module.exports = async context => {
 
   const diff = await getDiff(context);
   context.log(diff);
-  // TODO: Create issues from todo flags
+
+  const files = parseDiff(diff);
+
+  // Process all the files
+  await Promise.all(files.map(processFile));
 };
