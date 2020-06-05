@@ -11,7 +11,7 @@ const isDuplicate = async (title, context) => {
   const search = await context.github.search.issuesAndPullRequests({
     q: `${title} in:title repo:${context.payload.repository.full_name}`,
     per_page: 100
-  }); 
+  });
 
   if (search.data.total_count !== 0) {
     return true;
