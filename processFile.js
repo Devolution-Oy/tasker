@@ -14,16 +14,20 @@ const isDuplicate = async (title, context) => {
 const createIssue = async (title, context) => {
   const dublicate = await isDuplicate(title, context);
   if (dublicate) {
-    context.log('Isseu "' + title + '" exists. Prefixing the title');
-    title = 'RENAME: ' + title;
+    context.log('Issue with "' + title + '" exists. Prefixing the title');
+    title = 'RENAME THIS: ' + title;
   }
 
   context.log('Trying to create issue ' + title);
-  const body = 'Example issue body';
+  // TODO: Fetch ProjectMaster as assignee from Roster
+  const assignee = 'mkurkela';
+  const author = context.payload.pull_request ? context.payload.pull_request.head.user.login : null;
+  const parent = context.payload.pull_request ? context.payload.pull_request.number : null;
+  const body = `Task generated from TODO flag\nParent:${parent}\nAuthor:${author}`;
   return context.github.issues.create(context.repo({
     title: title,
     body: body,
-    assignee: 'mkurkela'
+    assignee: assignee
   }));
 };
 
