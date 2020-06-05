@@ -24,6 +24,7 @@ const processChange = async (change, context) => {
   if (!change || change.type !== 'add') return;
 
   // Find TODOs
+  context.log('change content: ' + change.content);
   findTODO(change.content).then(async title => {
     const dublicate = await isDuplicate(title, context);
     if (dublicate) {
