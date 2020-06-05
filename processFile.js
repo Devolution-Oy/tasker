@@ -18,9 +18,9 @@ const createIssue = async (title, context) => {
     title = 'RENAME: ' + title;
   }
 
-  context.log('Trying to create isse ' + title);
+  context.log('Trying to create issue ' + title);
   const body = 'Example issue body';
-  return context.github.issue.create(context.repo({
+  return context.github.issues.create(context.repo({
     title: title,
     body: body,
     assignee: 'mkurkela'
@@ -30,7 +30,7 @@ const createIssue = async (title, context) => {
 const processChange = async (change, context) => {
   if (!change || change.type !== 'add') return;
 
-  const regex = new RegExp('.*TODO\\b\\s?:?(?<title>.*)', 'i');
+  const regex = new RegExp('.*TODO\\b\\s?:?(?<title>.*)');
   const match = regex.exec(change.content);
   if (!match || !match.groups.title) return;
 
