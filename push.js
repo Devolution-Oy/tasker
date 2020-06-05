@@ -16,5 +16,7 @@ module.exports = async context => {
   const files = parseDiff(diff);
 
   // Process all the files
-  await Promise.all(files.map(processFile));
+  await Promise.all(files.map(file => {
+    return processFile(file, context);
+  }));
 };
