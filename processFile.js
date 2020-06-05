@@ -18,6 +18,7 @@ const createIssue = async (title, context) => {
     title = 'RENAME: ' + title;
   }
 
+  context.log('Trying to create isse ' + title);
   const body = 'Example issue body';
   return context.github.issue.create(context.repo({
     title: title,
@@ -31,7 +32,7 @@ const processChange = async (change, context) => {
 
   const regex = new RegExp('.*TODO\\b\\s?:?(?<title>.*)', 'i');
   const match = regex.exec(change.content);
-  if (!match) return;
+  if (!match || !match.title) return;
 
   var title = match.title.trim();
 
