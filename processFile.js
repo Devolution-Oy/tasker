@@ -1,12 +1,3 @@
-const findTODO = async changeContent => {
-  const regex = new RegExp('.*TODO\\b\\s?:?(?<title>.*)', 'i');
-  const match = regex.exec(changeContent);
-  if (!match) return;
-  return new Promise(resolve => {
-    resolve(match.title.trim());
-  });
-};
-
 const isDuplicate = async (title, context) => {
   const search = await context.github.search.issuesAndPullRequests({
     q: `${title} in:title repo:${context.payload.repository.full_name}`,
@@ -20,25 +11,31 @@ const isDuplicate = async (title, context) => {
   return false;
 };
 
+const createIssue = async (title, context) => {
+  const dublicate = await isDuplicate(title, context);
+  if (dublicate) {
+    context.log('Isseu "' + title + '" exists. Prefixing the title');
+    title = 'RENAME: ' + title;
+  }
+
+  const body = 'Example issue body';
+  return context.github.issue.create(context.repo({
+    title: title,
+    body: body,
+    assignee: 'mkurkela'
+  }));
+};
+
 const processChange = async (change, context) => {
   if (!change || change.type !== 'add') return;
 
-  // Find TODOs
-  context.log('change content: ' + change.content);
-  findTODO(change.content).then(async title => {
-    const dublicate = await isDuplicate(title, context);
-    if (dublicate) {
-      context.log('Isseu "' + title + '" exists. Prefixing the title');
-      title = 'RENAME: ' + title;
-    }
+  const regex = new RegExp('.*TODO\\b\\s?:?(?<title>.*)', 'i');
+  const match = regex.exec(change.content);
+  if (!match) return;
 
-    const body = 'Example issue body';
-    return context.github.issue.create(context.repo({
-      title: title,
-      body: body,
-      assignee: 'mkurkela'
-    }));
-  });
+  var title = match.title.trim();
+
+  return createIssue(title, context);
 };
 
 const processChunk = async (chunk, context) => {
