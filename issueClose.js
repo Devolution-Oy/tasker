@@ -6,28 +6,26 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 })
 
-const sendPayment = (amount, githubUser, issue, project) => {
-  firebase.auth().currentUser.getIdToken(true).then(token => {
-    console.log('Got application token ' + token);
-    const headers = {
-      authorization: token,
-    };
+const sendPayment = async (amount, githubUser, issue, project) => {
+  return admin.auth().currentUser.getIdToken(true)
+    .then(token => {
+      console.log('Got application token ' + token);
+      const headers = {
+        authorization: token,
+      };
 
-    return axios.post(process.env.ROSTER_URL + '/postRecord',
-      {
-        amount: amount,
-        githubUser: githubUser,
-        issue: issue,
-        project: project,
-        timestamp: Date.now()
-      },
-      {
-        headers: headers
-      })
-
-  }).then(res => {
-    return true;
-  });
+      return axios.post(process.env.ROSTER_URL + '/postRecord',
+        {
+          amount: amount,
+          githubUser: githubUser,
+          issue: issue,
+          project: project,
+          timestamp: Date.now()
+        },
+        {
+          headers: headers
+        })
+    });
 };
 
 const checkLabelName = (labels, name) => {

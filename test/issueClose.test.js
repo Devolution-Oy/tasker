@@ -13,6 +13,7 @@ const failed = { body: 'Failed to send payment' };
 const fs = require('fs');
 const path = require('path');
 
+
 describe('Closed issue', () => {
   let probot;
   let mockCert;
