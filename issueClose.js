@@ -1,7 +1,7 @@
 const axios = require('axios');
 const admin = require('firebase-admin');
 
-const serviceAccount = require(process.env.ROSTER_SERVICE_APP_JSON);
+const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });

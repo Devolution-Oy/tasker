@@ -4,11 +4,9 @@ admin.initializeApp = jest.fn();
 
 admin.auth = jest.fn(() => {
   return {
-    currentUser: {
-      getIdToken: jest.fn(refresh => {
-        return Promise.resolve('Bearer 123456789');
-      })
-    }
+    createCustomToken: jest.fn(refresh => {
+      return Promise.resolve('Bearer 123456789');
+    })
   };
 });
 
