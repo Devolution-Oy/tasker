@@ -7,7 +7,7 @@ admin.initializeApp({
 });
 
 const sendPayment = async (amount, githubUser, issue, project) => {
-  return admin.auth().currentUser.getIdToken(true)
+  return admin.auth().createCustomToken(process.env.APP_ID)
     .then(token => {
       console.log('Got application token ' + token);
       const headers = {
