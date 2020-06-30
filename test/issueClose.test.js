@@ -13,7 +13,6 @@ const failed = { body: 'Failed to send payment' };
 const fs = require('fs');
 const path = require('path');
 
-
 describe('Closed issue', () => {
   let probot;
   let mockCert;
@@ -64,7 +63,7 @@ describe('Closed issue', () => {
   test('Payment is sent to assignee', async () => {
     nock(process.env.ROSTER_URL, {
       reqheaders: {
-        'Authorization': headerValue => headerValue.includes('Bearer')
+        Authorization: headerValue => headerValue.includes('Bearer')
       }
     })
       .post('/postRecord')

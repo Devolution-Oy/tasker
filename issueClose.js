@@ -4,14 +4,14 @@ const admin = require('firebase-admin');
 const serviceAccount = require(process.env.ROSTER_SERVICE_APP_JSON);
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
-})
+});
 
 const sendPayment = async (amount, githubUser, issue, project) => {
   return admin.auth().currentUser.getIdToken(true)
     .then(token => {
       console.log('Got application token ' + token);
       const headers = {
-        authorization: token,
+        authorization: token
       };
 
       return axios.post(process.env.ROSTER_URL + '/postRecord',
@@ -24,7 +24,7 @@ const sendPayment = async (amount, githubUser, issue, project) => {
         },
         {
           headers: headers
-        })
+        });
     });
 };
 
