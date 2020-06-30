@@ -11,7 +11,7 @@ const sendPayment = async (amount, githubUser, issue, project) => {
     .then(token => {
       console.log('Got application token ' + token);
       const headers = {
-        authorization: token
+        authorization: 'Bearer ' + token
       };
 
       return axios.post(process.env.ROSTER_URL + '/postRecord',
