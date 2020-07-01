@@ -4,7 +4,7 @@
  */
 
 const issueClose = require('./issueClose.js');
-const push = require('./push');
+const push = require('./push.js');
 
 module.exports = app => {
   // Handle payments for closed issues

@@ -7,11 +7,11 @@ admin.initializeApp({
 });
 
 const sendPayment = async (amount, githubUser, issue, project) => {
-  return admin.auth().createCustomToken(process.env.APP_ID)
+  return admin.auth().currentUser.getIdToken()
     .then(token => {
       console.log('Got application token ' + token);
       const headers = {
-        authorization: 'Bearer ' + token
+        authorization: token
       };
 
       return axios.post(process.env.ROSTER_URL + '/postRecord',

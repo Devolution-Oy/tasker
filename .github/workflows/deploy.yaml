@@ -45,4 +45,4 @@ jobs:
         script: |
           /snap/bin/docker stop $(/snap/bin/docker ps -a -q)
           /snap/bin/docker pull devolutionfinland/tasker:latest
-          /snap/bin/docker run --rm -d -e WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }} -e APP_ID=${{ secrets.APP_ID }} -e ROSTER_URL=${{ secrets.ROSTER_URL }} -e GOOGLE_APPLICATION_CREDENTIALS:${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} -v $PWD/key.pem:/home/node/app/key.pem -v $PWD/roster-service-account.json:/home/node/app/roster-service-account.json -p 80:8080 devolutionfinland/tasker:latest
+          /snap/bin/docker run --rm -d -e WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }} -e APP_ID=${{ secrets.APP_ID }} -e ROSTER_URL=${{ secrets.ROSTER_URL }} -e GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} -v $PWD/key.pem:/home/node/app/key.pem -v $PWD/roster-service-account.json:/home/node/app/roster-service-account.json -p 80:8080 devolutionfinland/tasker:latest

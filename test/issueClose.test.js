@@ -63,7 +63,7 @@ describe('Closed issue', () => {
   test('Payment is sent to assignee', async () => {
     nock(process.env.ROSTER_URL, {
       reqheaders: {
-        Authorization: headerValue => headerValue.includes('Bearer')
+        Authorization: headerValue => headerValue.includes('')
       }
     })
       .post('/postRecord')
