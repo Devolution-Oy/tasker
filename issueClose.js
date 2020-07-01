@@ -1,30 +1,20 @@
 const axios = require('axios');
-const admin = require('firebase-admin');
-
-const serviceAccount = require(process.env.GOOGLE_APPLICATION_CREDENTIALS);
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
 
 const sendPayment = async (amount, githubUser, issue, project) => {
-  return admin.auth().currentUser.getIdToken()
-    .then(token => {
-      console.log('Got application token ' + token);
-      const headers = {
-        authorization: token
-      };
+  const headers = {
+    authorization: process.env.TASKER_APP_ID
+  };
 
-      return axios.post(process.env.ROSTER_URL + '/postRecord',
-        {
-          amount: amount,
-          githubUser: githubUser,
-          issue: issue,
-          project: project,
-          timestamp: Date.now()
-        },
-        {
-          headers: headers
-        });
+  return axios.post(process.env.ROSTER_URL + '/postRecord',
+    {
+      amount: amount,
+      githubUser: githubUser,
+      issue: issue,
+      project: project,
+      timestamp: Date.now()
+    },
+    {
+      headers: headers
     });
 };
 
