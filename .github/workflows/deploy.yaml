@@ -22,6 +22,7 @@ jobs:
         ROSTER_URL: ${{ secrets.ROSTER_URL }}
         APP_ID: ${{ secrets.APP_ID }}
         WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+        TASKER_APP_ID: ${{ secrets.TASKER_APP_ID }}
         CI: true
     - name: Publish to Github Packages Registry
       uses: elgohr/Publish-Docker-Github-Action@master
