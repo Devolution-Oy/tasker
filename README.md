@@ -1,6 +1,11 @@
+![build](https://github.com/Devolution-Oy/tasker/workflows/build/badge.svg)
+
 # tasker
 
-> A GitHub App built with [Probot](https://github.com/probot/probot) that Devolution&#x27;s task handler app
+> A GitHub App built with [Probot](https://github.com/probot/probot)
+
+## Briefly
+Tasker App handles Devolution Oy work tasks and new issue creation.
 
 ## Setup
 
@@ -20,4 +25,4 @@ For more, check out the [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
-[ISC](LICENSE) © 2020 Mikko Kurkela <mikko.kurkela@devolution.fi>
+[ISC](LICENSE) © 2020 Devolution Oy <mikko.kurkela@devolution.fi>
