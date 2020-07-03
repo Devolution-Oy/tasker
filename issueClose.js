@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const sendPayment = async (amount, githubUser, issue, project) => {
+const sendPayment = async (amount, issue, project) => {
   const headers = {
     authorization: process.env.TASKER_APP_ID
   };
@@ -8,10 +8,11 @@ const sendPayment = async (amount, githubUser, issue, project) => {
   return axios.post(process.env.ROSTER_URL + '/postRecord',
     {
       amount: amount,
-      githubUser: githubUser,
-      issue: issue,
+      githubUser: issue.assignee.login,
+      issue: issue.number,
       project: project,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      description: issue.title
     },
     {
       headers: headers
@@ -42,7 +43,7 @@ module.exports = async context => {
   }
 
   const repo = context.payload.repository.name;
-  return sendPayment(50, issue.assignee.login, issue.number, repo, context)
+  return sendPayment(50, issue, repo)
     .then(res => {
       context.log('Sent');
       const issueComment = context.issue({ body: `Sent payment to ${issue.assignee.login}` });

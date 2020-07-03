@@ -1,5 +1,6 @@
 {
   "action": "closed",
+  "title": "Something done",
   "issue": {
     "number": 1,
     "user": {
