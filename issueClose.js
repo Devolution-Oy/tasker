@@ -1,5 +1,6 @@
 const axios = require('axios');
 
+// TODO: Call fetchProject function to get project issue prices
 const sendPayment = async (amount, issue, project) => {
   const headers = {
     authorization: process.env.TASKER_APP_ID
