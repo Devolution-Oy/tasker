@@ -6,7 +6,14 @@
     "user": {
       "login": "octocat"
     },
-    "labels": [],
+    "labels": [
+      {
+        "name": "dev"
+      },
+      {
+        "name": "foo"
+      }
+    ],
     "assignee": {
       "login": "octocat",
       "id": 1,
