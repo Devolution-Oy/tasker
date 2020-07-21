@@ -12,4 +12,4 @@ module.exports = async (project) => {
     {
       headers: headers
     });
-}
+};
