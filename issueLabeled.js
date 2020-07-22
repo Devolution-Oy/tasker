@@ -3,15 +3,21 @@ const sendPayment = require('./utils/sendPayment');
 
 module.exports = async context => {
   context.log('issue labeled event received');
-  const issue = context.payload.issue;
 
   // Only ready labels causes an action
   // TODO: Only open issues should cause accepted payment
   const label = context.payload.label;
   context.log(label);
-  if (label.name !== 'ready') { return; }
+  if (label.name !== 'ready') {
+    context.log('Label was not ready (' + label.name + ')');
+    return;
+  }
 
+  context.log('Getting repo');
   const repo = context.payload.repository.name;
+  context.log(repo);
+  const issue = context.payload.issue;
+  context.log('Fetching project from roster');
   const project = await fetchProject(issue, repo);
   context.log(project);
   const amount = project.data.accepted;
