@@ -13,7 +13,7 @@ module.exports = async (amount, issue, project) => {
     timestamp: Date.now(),
     description: issue.title
   };
-  console.log();
+  console.log(payload);
   return axios.post(process.env.ROSTER_URL + '/postRecord',
     payload,
     {
