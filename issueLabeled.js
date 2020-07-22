@@ -22,7 +22,7 @@ module.exports = async context => {
   const amount = project.data.accepted;
   const issue = context.payload.issue;
   context.log(amount);
-  return sendPayment(amount, issue, repo).then(res => {
+  return sendPayment(amount, issue, repo, 'accepted').then(res => {
     context.log('Sent!');
     const issueComment = context.issue({ body: `Sent a payment to ${issue.assignee.login} (${amount} €)` });
     context.log(issueComment);
