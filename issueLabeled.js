@@ -2,7 +2,7 @@ const fetchProject = require('./utils/fetchProject');
 const sendPayment = require('./utils/sendPayment');
 
 module.exports = async context => {
-  console.log('issue labeled event received');
+  context.log('issue labeled event received');
   const issue = context.payload.issue;
 
   // Only ready labels causes an action
@@ -12,10 +12,11 @@ module.exports = async context => {
 
   const repo = context.payload.repository.name;
   const project = await fetchProject(issue, repo);
+  context.log(project);
   const amount = project.data.accepted;
-  console.log(amount);
+  context.log(amount);
   return sendPayment(amount, issue, repo).then(res => {
-    console.log('Sent!');
+    context.log('Sent!');
     const issueComment = context.issue({ body: `Sent a payment to ${issue.assignee.login} (${amount} €)` });
     context.log(issueComment);
     return context.github.issues.createComment(issueComment);

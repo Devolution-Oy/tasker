@@ -2,7 +2,7 @@ const fetchProject = require('./fetchProject');
 
 const issuePrice = (labels, project) => {
   let price = 0;
-  console.log(project)
+  console.log(project);
   labels.forEach(label => {
     if (project[label.name]) { price = project[label.name]; }
   });
