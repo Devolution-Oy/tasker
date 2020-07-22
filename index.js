@@ -4,6 +4,7 @@
  */
 
 const issueClose = require('./issueClose.js');
+const issueLabeled = require('./issueLabeled.js');
 const push = require('./push.js');
 
 module.exports = app => {
@@ -11,4 +12,6 @@ module.exports = app => {
   app.on('issues.closed', issueClose);
   // Parse TODO flags from new commits
   app.on('push', push);
+  // Handle issue acceptance
+  app.on('issues.labeled', issueLabeled);
 };

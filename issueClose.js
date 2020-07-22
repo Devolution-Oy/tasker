@@ -1,24 +1,6 @@
-const axios = require('axios');
 const getPrice = require('./utils/getPrice');
+const sendPayment = require('./utils/sendPayment');
 
-const sendPayment = async (amount, issue, project) => {
-  const headers = {
-    authorization: process.env.TASKER_APP_ID
-  };
-
-  return axios.post(process.env.ROSTER_URL + '/postRecord',
-    {
-      amount: amount,
-      githubUser: issue.assignee.login,
-      issue: issue.number,
-      project: project,
-      timestamp: Date.now(),
-      description: issue.title
-    },
-    {
-      headers: headers
-    });
-};
 
 const checkLabelName = (labels, name) => {
   let ret = false;
