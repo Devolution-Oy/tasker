@@ -1,7 +1,6 @@
 const getPrice = require('./utils/getPrice');
 const sendPayment = require('./utils/sendPayment');
 
-
 const checkLabelName = (labels, name) => {
   let ret = false;
   labels.forEach(label => {

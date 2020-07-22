@@ -6,14 +6,14 @@ module.exports = async (amount, issue, project) => {
   };
 
   const payload = {
-      amount: amount,
-      githubUser: issue.assignee.login,
-      issue: issue.number,
-      project: project,
-      timestamp: Date.now(),
-      description: issue.title
-    }
-  console.log()
+    amount: amount,
+    githubUser: issue.assignee.login,
+    issue: issue.number,
+    project: project,
+    timestamp: Date.now(),
+    description: issue.title
+  };
+  console.log();
   return axios.post(process.env.ROSTER_URL + '/postRecord',
     payload,
     {
