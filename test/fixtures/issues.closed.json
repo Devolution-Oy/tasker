@@ -1,7 +1,7 @@
 {
   "action": "closed",
-  "title": "Something done",
   "issue": {
+    "title": "Something done",
     "number": 1,
     "user": {
       "login": "octocat"
