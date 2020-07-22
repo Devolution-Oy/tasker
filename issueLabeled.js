@@ -18,7 +18,7 @@ module.exports = async context => {
   context.log(repo);
   context.log('Fetching project from roster');
   const project = await fetchProject(repo);
-  context.log(project);
+  context.log(project.data);
   const amount = project.data.accepted;
   const issue = context.payload.issue;
   context.log(amount);
