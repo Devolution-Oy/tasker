@@ -16,11 +16,11 @@ module.exports = async context => {
   context.log('Getting repo');
   const repo = context.payload.repository.name;
   context.log(repo);
-  const issue = context.payload.issue;
   context.log('Fetching project from roster');
-  const project = await fetchProject(issue, repo);
+  const project = await fetchProject(repo);
   context.log(project);
   const amount = project.data.accepted;
+  const issue = context.payload.issue;
   context.log(amount);
   return sendPayment(amount, issue, repo).then(res => {
     context.log('Sent!');
