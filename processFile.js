@@ -22,12 +22,12 @@ const createIssue = async (title, context) => {
   // TODO: Fetch ProjectMaster as assignee from Roster
   const assignee = 'mkurkela';
   const author = context.payload.sender.name;
-  const author_url = context.payload.sender.url;
+  const authorUrl = context.payload.sender.url;
   const parent = context.payload.head_commit ? context.head_commit.id : null;
-  const parent_url = context.payload.head_commit ? context.head_commit.url : null;
+  const parentUrl = context.payload.head_commit ? context.head_commit.url : null;
   const body = `Task generated from TODO flag\n
-  Parent: [${parent}](${parent_url})\n
-  Author: [${author}](${author_url})`;
+  Parent: [${parent}](${parentUrl})\n
+  Author: [${author}](${authorUrl})`;
   return context.github.issues.create(context.repo({
     title: title,
     body: body,
