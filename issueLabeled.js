@@ -8,6 +8,7 @@ module.exports = async context => {
   // Only ready labels causes an action
   // TODO: Only open issues should cause accepted payment
   const label = context.payload.label;
+  context.log(label);
   if (label.name !== 'ready') { return; }
 
   const repo = context.payload.repository.name;
