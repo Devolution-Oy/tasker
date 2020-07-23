@@ -23,8 +23,13 @@ const createIssue = async (title, context) => {
   const assignee = 'mkurkela';
   const author = context.payload.sender.name;
   const authorUrl = context.payload.sender.url;
+<<<<<<< HEAD
   const parent = context.payload.head_commit ? context.payload.head_commit.id : null;
   const parentUrl = context.payload.head_commit ? context.payload.head_commit.url : null;
+=======
+  const parent = context.payload.head_commit ? context.head_commit.id : null;
+  const parentUrl = context.payload.head_commit ? context.head_commit.url : null;
+>>>>>>> 0417a42d20b61101f3bafd454c54c10c3e853163
   const body = `Task generated from TODO flag\n
   Parent: [${parent}](${parentUrl})\n
   Author: [${author}](${authorUrl})`;

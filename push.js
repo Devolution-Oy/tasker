@@ -2,6 +2,7 @@ const getDiff = require('./diff');
 const parseDiff = require('parse-diff');
 const processFile = require('./processFile');
 
+// TODO: Add unit tests for push events
 module.exports = async context => {
   context.log('Push event received!');
   context.log(context.payload.ref);
