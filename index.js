@@ -14,4 +14,10 @@ module.exports = app => {
   app.on('push', push);
   // Handle issue acceptance
   app.on('issues.labeled', issueLabeled);
+
+  const status = app.route('/status');
+  status.use(require('express').static('public'));
+  status.get('/alive', (_req, res) => {
+    res.status(200).send('Alive');
+  });
 };
