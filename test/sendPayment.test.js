@@ -37,7 +37,7 @@ describe('sendPayment', () => {
     }).reply(200);
 
     const event = require('./fixtures/issues.closed.json');
-    await sendPayment(49, event.issue, 'testing-things', 'closed');
+    await sendPayment(49, event.issue, 'testing-things', 'closed', event.issue.assignee.login);
     expect(nock.isDone(), 'Pending mocks: ' + nock.pendingMocks()).toBeTruthy();
   });
 });

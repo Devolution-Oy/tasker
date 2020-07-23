@@ -26,7 +26,7 @@ module.exports = async context => {
 
   const repo = context.payload.repository.name;
   const amount = await getPrice(issue, repo);
-  return sendPayment(amount, issue, repo, 'closed').then(res => {
+  return sendPayment(amount, issue, repo, 'closed', issue.assignee.login).then(res => {
     console.log('Sent!');
     const issueComment = context.issue({ body: `Sent a payment to ${issue.assignee.login} (${amount} €)` });
     context.log(issueComment);

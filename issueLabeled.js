@@ -1,5 +1,6 @@
 const fetchProject = require('./utils/fetchProject');
 const sendPayment = require('./utils/sendPayment');
+const getAuthor = require('./utils/getAuthor');
 
 module.exports = async context => {
   context.log('issue labeled event received');
@@ -22,7 +23,10 @@ module.exports = async context => {
   const amount = project.data.accepted;
   const issue = context.payload.issue;
   context.log(amount);
-  return sendPayment(amount, issue, repo, 'accepted').then(res => {
+
+  const author = getAuthor(issue);
+  context.log('Issue author: ' + author);
+  return sendPayment(amount, issue, repo, 'accepted', author).then(res => {
     context.log('Sent!');
     const issueComment = context.issue({ body: `Sent a payment to ${issue.assignee.login} (${amount} €)` });
     context.log(issueComment);

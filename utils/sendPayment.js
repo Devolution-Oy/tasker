@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-module.exports = async (amount, issue, project, action) => {
+module.exports = async (amount, issue, project, action, author) => {
   const headers = {
     authorization: process.env.TASKER_APP_ID
   };
@@ -8,7 +8,7 @@ module.exports = async (amount, issue, project, action) => {
   console.log(issue);
   const payload = {
     amount: amount,
-    githubUser: issue.assignee.login,
+    githubUser: author,
     issue: issue.number,
     action: action,
     project: project,

@@ -13,6 +13,7 @@
         "name": "foo"
       }
     ],
+    "body": "Task generated from TODO flag\n\nParent: [28c96833c7911f01fad335f2b71d7bfa15aa6eec](https://github.com/Devolution-Oy/tasker/commit/28c96833c7911f01fad335f2b71d7bfa15aa6eec)\n\nAuthor: [mkurkela](https://api.github.com/users/mkurkela)",
     "state": "open",
     "locked": false,
     "assignee": {
