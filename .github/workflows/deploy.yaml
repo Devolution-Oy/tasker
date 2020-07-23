@@ -47,7 +47,3 @@ jobs:
           /snap/bin/docker stop $(/snap/bin/docker ps -a -q)
           /snap/bin/docker pull devolutionfinland/tasker:latest
           /snap/bin/docker run --rm -d -e WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }} -e APP_ID=${{ secrets.APP_ID }} -e ROSTER_URL=${{ secrets.ROSTER_URL }} -e TASKER_APP_ID=${{ secrets.TASKER_APP_ID }} -v $PWD/key.pem:/home/node/app/key.pem -p 80:8080 devolutionfinland/tasker:latest
-    - name: Create coverage report
-      uses: romeovs/lcov-reporter-action@v0.2.16
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
