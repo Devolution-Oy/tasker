@@ -24,7 +24,7 @@ jobs:
         WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
         TASKER_APP_ID: ${{ secrets.TASKER_APP_ID }}
         CI: true
-    - name: Build container and push to dockerhub
+    - name: Publish to Github Packages Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       env:
         BA_ROSTER_URL: ${{ secrets.ROSTER_URL }}
