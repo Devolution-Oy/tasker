@@ -1,9 +1,6 @@
 name: build
 
-on:
-  push:
-    branches: 
-      - master
+on: pull_request
 
 jobs:
   build:
@@ -19,31 +16,31 @@ jobs:
         npm ci
         npm run test
       env:
-        ROSTER_URL: ${{ secrets.ROSTER_URL }}
-        APP_ID: ${{ secrets.APP_ID }}
-        WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+        ROSTER_URL: ${{ secrets.ROSTER_URL_PR }}
+        APP_ID: ${{ secrets.APP_ID_PR }}
+        WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET_PR }}
         TASKER_APP_ID: ${{ secrets.TASKER_APP_ID }}
         CI: true
     - name: Build container and push to dockerhub
       uses: elgohr/Publish-Docker-Github-Action@master
       env:
-        BA_ROSTER_URL: ${{ secrets.ROSTER_URL }}
-        BA_APP_ID: ${{ secrets.APP_ID }}
-        BA_WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+        BA_ROSTER_URL: ${{ secrets.ROSTER_URL_PR }}
+        BA_APP_ID: ${{ secrets.APP_ID_PR }}
+        BA_WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET_PR }}
       with:
         name: devolutionfinland/tasker
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PW }}
         dockerfile: Dockerfile
-        tags: latest
+        tags: pr
     - name: Deploy package to digitalocean
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.TASKER_HOST }}
-        username: ${{ secrets.DROPLET_USER }}
-        password: ${{ secrets.DROPLET_PW }}
+        host: ${{ secrets.TASKER_HOST_PR }}
+        username: ${{ secrets.DROPLET_USER_PR }}
+        password: ${{ secrets.DROPLET_PW_PR }}
         port: ${{ secrets.PORT }}
         script: |
           /snap/bin/docker stop $(/snap/bin/docker ps -a -q)
-          /snap/bin/docker pull devolutionfinland/tasker:latest
-          /snap/bin/docker run --rm -d -e WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }} -e APP_ID=${{ secrets.APP_ID }} -e ROSTER_URL=${{ secrets.ROSTER_URL }} -e TASKER_APP_ID=${{ secrets.TASKER_APP_ID }} -v $PWD/key.pem:/home/node/app/key.pem -p 80:8080 devolutionfinland/tasker:latest
+          /snap/bin/docker pull devolutionfinland/tasker:pr
+          /snap/bin/docker run --rm -d -e WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET_PR }} -e APP_ID=${{ secrets.APP_ID_PR }} -e ROSTER_URL=${{ secrets.ROSTER_URL_PR }} -e TASKER_APP_ID=${{ secrets.TASKER_APP_ID }} -v $PWD/key.pem:/home/node/app/key.pem -p 80:8080 devolutionfinland/tasker:pr
