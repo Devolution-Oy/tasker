@@ -37,7 +37,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.TASKER_HOST_PR }}
-        username: ${{ secrets.DROPLET_USER }}
+        username: ${{ secrets.DROPLET_USER_PR }}
         password: ${{ secrets.DROPLET_PW_PR }}
         port: ${{ secrets.PORT }}
         script: |
