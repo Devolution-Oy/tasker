@@ -43,4 +43,4 @@ jobs:
         script: |
           /snap/bin/docker stop $(/snap/bin/docker ps -a -q)
           /snap/bin/docker pull devolutionfinland/tasker:pr
-          /snap/bin/docker run --rm -d -e WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET_PR }} -e APP_ID=${{ secrets.APP_ID_PR }} -e ROSTER_URL=${{ secrets.ROSTER_URL_PR }} -e TASKER_APP_ID=${{ secrets.TASKER_APP_ID }} -v $PWD/key.pem:/home/node/app/key.pem -p 80:8080 devolutionfinland/tasker:latest
+          /snap/bin/docker run --rm -d -e WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET_PR }} -e APP_ID=${{ secrets.APP_ID_PR }} -e ROSTER_URL=${{ secrets.ROSTER_URL_PR }} -e TASKER_APP_ID=${{ secrets.TASKER_APP_ID }} -v $PWD/key.pem:/home/node/app/key.pem -p 80:8080 devolutionfinland/tasker:pr
