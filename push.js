@@ -6,7 +6,7 @@ const processFile = require('./processFile');
 module.exports = async context => {
   context.log('Push event received!');
   context.log(context.payload.ref);
-  if (context.payload.ref !== 'refs/heads/master' || context.payload.ref !== 'refs/heads/main') {
+  if (context.payload.ref !== 'refs/heads/master' && context.payload.ref !== 'refs/heads/main') {
     context.log('Push event was not for master branch');
     return;
   }
