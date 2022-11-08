@@ -1,6 +1,6 @@
 ![build](https://github.com/Devolution-Oy/tasker/workflows/build/badge.svg)
 
-# tasker
+# Devolution tasker
 
 > A GitHub App built with [Probot](https://github.com/probot/probot)
 
