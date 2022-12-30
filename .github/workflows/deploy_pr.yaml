@@ -22,7 +22,7 @@ jobs:
         TASKER_APP_ID: ${{ secrets.TASKER_APP_ID }}
         CI: true
     - name: Build container and push to dockerhub
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       env:
         BA_ROSTER_URL: ${{ secrets.ROSTER_URL_PR }}
         BA_APP_ID: ${{ secrets.APP_ID_PR }}
