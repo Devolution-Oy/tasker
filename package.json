@@ -24,9 +24,9 @@
     "acorn": "^7.2.0",
     "axios": "^0.21.2",
     "eslint-config-semistandard": "^15.0.0",
-    "firebase-admin": "^8.13.0",
+    "firebase-admin": "^11.4.1",
     "parse-diff": "^0.7.0",
-    "probot": "^9.11.5"
+    "probot": "^12.2.8"
   },
   "devDependencies": {
     "fs": "0.0.1-security",
