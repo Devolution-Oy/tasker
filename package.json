@@ -26,14 +26,14 @@
     "eslint-config-semistandard": "^15.0.0",
     "firebase-admin": "^8.13.0",
     "parse-diff": "^0.7.0",
-    "probot": "^9.11.5"
+    "probot": "^12.3.0"
   },
   "devDependencies": {
     "fs": "0.0.1-security",
     "jest": "^24.9.0",
     "jest-expect-message": "^1.0.2",
     "nock": "^12.0.0",
-    "nodemon": "^2.0.0",
+    "nodemon": "^2.0.20",
     "semistandard": "^14.2.0",
     "smee-client": "^1.1.0"
   },
