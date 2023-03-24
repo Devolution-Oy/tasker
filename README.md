@@ -6,6 +6,8 @@
 
 ## Briefly
 Tasker App handles Devolution Oy work tasks and new issue creation.
+- It opens new issues from TODO flags
+- It sends closed information to Devolution roster application
 
 ## Setup
 
